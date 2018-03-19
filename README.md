@@ -22,13 +22,13 @@ For more information on how to use/install composer, please visit: [https://gith
 
 To install the MyParcel SDK into your project, simply
 
-	$ composer require myparcelnl/sdk
+	$ composer require myparcelbe/sdk
 	
 ### Installation without composer
 
 If you don't have experience with composer, it is possible to use the SDK without using composer.
 
-You can download the zip on the projects [releases](https://github.com/myparcelnl/sdk/releases) page.
+You can download the zip on the projects [releases](https://github.com/MyParcelBE/sdk/releases) page.
 
 1. Download the package zip (SDKvx.x.x.zip).
 2. Unzip the contents of the zip, and upload the vendor directory to your server.
@@ -43,9 +43,9 @@ Also the php curl extension needs to be installed.
 ### Quick start and examples
 
 ```php
-$myParcelCollection = new \MyParcelNL\Sdk\src\Helper\MyParcelCollection();
+$myParcelCollection = new \MyParcelBE\Sdk\src\Helper\MyParcelCollection();
 
-$consignment = (new \MyParcelNL\Sdk\src\Model\Repository\MyParcelConsignmentRepository())
+$consignment = (new \MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository())
     ->setApiKey('api_key_from_MyParcel_backoffice')
     ->setReferenceId('Order 1203')
     ->setCountry('NL')
@@ -64,9 +64,9 @@ $myParcelCollection
 
 ## Available Methods
 ```php
-$myParcelCollection = new \MyParcelNL\Sdk\src\Helper\MyParcelCollection();
+$myParcelCollection = new \MyParcelBE\Sdk\src\Helper\MyParcelCollection();
 
-$consignment = (new \MyParcelNL\Sdk\src\Model\Repository\MyParcelConsignmentRepository())
+$consignment = (new \MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository())
     ->setApiKey('api_key_from_MyParcel_backoffice')
     ->setReferenceId('Order 1203')
     ->setCountry('NL')
@@ -93,7 +93,7 @@ $myParcelCollection
 ```php
     ->setStreet('Plein 1945')
     ->setNumber((string)55)
-    ->setNumberSuffix('b')
+    ->setBoxNumber('b')
 ```
 #### Create concept
 ```php
@@ -129,11 +129,11 @@ $barcode = $consignment->getBarcode();
 #### Multiple shipments
 To create multiple consignments or get one pdf with multiple consignments, set multiple consignments. It's faster and cleaner.
 ```php
-$myParcelCollection = new \MyParcelNL\Sdk\src\Helper\MyParcelCollection();
+$myParcelCollection = new \MyParcelBE\Sdk\src\Helper\MyParcelCollection();
 
 foreach ($yourShipments as $yourShipment) {
 
-    $consignment = (new \MyParcelNL\Sdk\src\Model\Repository\MyParcelConsignmentRepository())
+    $consignment = (new \MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository())
         ->setApiKey('api_key_from_MyParcel_backoffice')
         ->setReferenceId($yourShipment->getOrderId()
         ->setName('Piet Hier');
@@ -146,7 +146,7 @@ foreach ($yourShipments as $yourShipment) {
 #### Later on
 In a new request, you can get all the data again.
 ```php
-$consignment = (new \MyParcelNL\Sdk\src\Model\Repository\MyParcelConsignmentRepository())
+$consignment = (new \MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository())
     ->setApiKey('api_key_from_MyParcel_backoffice')
     ->setReferenceId('Order 1203'); // or setMyParcelConsignmentId(123456)
 

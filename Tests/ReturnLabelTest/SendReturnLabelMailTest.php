@@ -7,19 +7,19 @@
  * http://creativecommons.org/licenses/by-nc-nd/3.0/nl/deed.en_US
  *
  * If you want to add improvements, please create a fork in our GitHub:
- * https://github.com/myparcelnl/magento
+ * https://github.com/myparcelbe/magento
  *
  * @author      Reindert Vetter <reindert@myparcel.nl>
  * @copyright   2010-2017 MyParcel
  * @license     http://creativecommons.org/licenses/by-nc-nd/3.0/nl/deed.en_US  CC BY-NC-ND 3.0 NL
- * @link        https://github.com/myparcelnl/magento
+ * @link        https://github.com/MyParcelBE/magento
  * @since       File available since Release 2.0.0
  */
 
-namespace MyParcelNL\Sdk\Tests\ReturnLabelTest;
+namespace MyParcelBE\Sdk\Tests\ReturnLabelTest;
 
-use MyParcelNL\Sdk\src\Helper\MyParcelCollection;
-use MyParcelNL\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
+use MyParcelBE\Sdk\src\Helper\MyParcelCollection;
+use MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
 
 class SendReturnLabelMailTest extends \PHPUnit_Framework_TestCase
 {
@@ -78,7 +78,7 @@ class SendReturnLabelMailTest extends \PHPUnit_Framework_TestCase
             'email' => 'reindert@myparcel.nl',
             'company' => 'Mega Store',
             'full_street_test' => 'Koestraat 55',
-            'number_suffix' => '',
+            'box_number' => '',
             'postal_code' => '2231JE',
             'city' => 'Katwijk',
             'phone' => '123-45-235-435',

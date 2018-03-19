@@ -4,25 +4,25 @@
  * Create international consignment
  *
  * If you want to add improvements, please create a fork in our GitHub:
- * https://github.com/myparcelnl
+ * https://github.com/myparcelbe
  *
  * @author      Reindert Vetter <reindert@myparcel.nl>
  * @copyright   2010-2017 MyParcel
  * @license     http://creativecommons.org/licenses/by-nc-nd/3.0/nl/deed.en_US  CC BY-NC-ND 3.0 NL
- * @link        https://github.com/myparcelnl/sdk
+ * @link        https://github.com/myparcelbe/sdk
  * @since       File available since Release v0.1.0
  */
 
-namespace MyParcelNL\Sdk\tests\SendConsignments\SendOneInternationalConsignmentTest;
+namespace MyParcelBE\Sdk\tests\SendConsignments\SendOneInternationalConsignmentTest;
 
-use MyParcelNL\Sdk\src\Helper\MyParcelCollection;
-use MyParcelNL\Sdk\src\Model\MyParcelCustomsItem;
-use MyParcelNL\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
+use MyParcelBE\Sdk\src\Helper\MyParcelCollection;
+use MyParcelBE\Sdk\src\Model\MyParcelCustomsItem;
+use MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
 
 
 /**
  * Class SendOneInternationalConsignmentTest
- * @package MyParcelNL\Sdk\tests\SendOneConsignmentTest
+ * @package MyParcelBE\Sdk\tests\SendOneConsignmentTest
  */
 class SendOneInternationalConsignmentTest extends \PHPUnit_Framework_TestCase
 {
@@ -130,7 +130,7 @@ class SendOneInternationalConsignmentTest extends \PHPUnit_Framework_TestCase
                 'full_street' => 'Plein 1940-45 3 b',
                 'street' => 'Plein 1940-45',
                 'number' => 3,
-                'number_suffix' => 'b',
+                'box_number' => 'b',
                 'postal_code' => '2231JE',
                 'city' => 'Rijnsburg',
                 'phone' => '123456',

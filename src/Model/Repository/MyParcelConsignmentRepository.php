@@ -3,36 +3,35 @@
  * The repository of a MyParcel consignment
  *
  * If you want to add improvements, please create a fork in our GitHub:
- * https://github.com/myparcelnl
+ * https://github.com/myparcelbe
  *
  * @author      Reindert Vetter <reindert@myparcel.nl>
  * @copyright   2010-2017 MyParcel
  * @license     http://creativecommons.org/licenses/by-nc-nd/3.0/nl/deed.en_US  CC BY-NC-ND 3.0 NL
- * @link        https://github.com/myparcelnl/sdk
+ * @link        https://github.com/myparcelbe/sdk
  * @since       File available since Release v0.1.0
  */
-namespace MyParcelNL\Sdk\src\Model\Repository;
+namespace MyParcelBE\Sdk\src\Model\Repository;
 
 
-use MyParcelNL\Sdk\src\Model\MyParcelConsignment;
-use MyParcelNL\Sdk\src\Model\MyParcelCustomsItem;
+use MyParcelBE\Sdk\src\Model\MyParcelConsignment;
+use MyParcelBE\Sdk\src\Model\MyParcelCustomsItem;
 
 /**
  * The repository of a MyParcel consignment
  *
  * Class MyParcelConsignmentRepository
- * @package MyParcelNL\Sdk\Model\Repository
+ * @package MyParcelBE\Sdk\Model\Repository
  */
 class MyParcelConsignmentRepository extends MyParcelConsignment
 {
+    const BOX_NL = 'bus';
+    const BOX_TRANSLATION_POSSIBILITIES = [' boîte', ' box', ' bte', ' Bus'];
 
     /**
      * Regular expression used to split street name from house number.
-     *
-     * For the full description go to:
-     * @link https://gist.github.com/RichardPerdaan/1e6ce1588f3990e856b55255572692d1
      */
-    const SPLIT_STREET_REGEX = '~(?P<street>.*?)\s?(?P<street_suffix>(?P<number>[\d]+)[\s-]{0,2}(?P<number_suffix>[a-zA-Z/\s]{0,5}$|[0-9/]{0,5}$|\s[a-zA-Z]{1}[0-9]{0,3}$|\s[0-9]{2}[a-zA-Z]{0,3}$))$~';
+    const SPLIT_STREET_REGEX = '~(?P<street>.*?)\s(?P<street_suffix>(?P<number>[^\s]{1,8})\s?(?P<box_separator>' . self::BOX_NL . '?)?\s?(?P<box_number>\d{0,8}$))$~';
 
     /**
      * Consignment types
@@ -67,8 +66,8 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
             $fullStreet .= ' ' . $this->getNumber();
         }
 
-        if ($this->getNumberSuffix()) {
-            $fullStreet .= ' ' . $this->getNumberSuffix();
+        if ($this->getBoxNumber()) {
+            $fullStreet .= ' ' . self::BOX_NL . ' ' . $this->getBoxNumber();
         }
 
         return trim($fullStreet);
@@ -90,11 +89,11 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
             throw new \Exception('First set the country code with setCountry() before running setFullStreet()');
         }
 
-        if ($this->getCountry() == 'NL') {
+        if ($this->getCountry() == 'BE') {
             $streetData = $this->splitStreet($fullStreet);
             $this->setStreet($streetData['street']);
             $this->setNumber($streetData['number']);
-            $this->setNumberSuffix($streetData['number_suffix']);
+            $this->setBoxNumber($streetData['box_number']);
         } else {
             $this->setStreet($fullStreet);
         }
@@ -124,6 +123,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
      * Encode all the data before sending it to MyParcel
      *
      * @return array
+     * @throws \Exception
      */
     public function apiEncode()
     {
@@ -156,7 +156,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
     /**
      * Get delivery type from checkout
      *
-     * You can use this if you use the following code in your checkout: https://github.com/myparcelnl/checkout
+     * You can use this if you use the following code in your checkout: https://github.com/MyParcelBE/checkout
      *
      * @param string $checkoutData
      * @return int
@@ -203,7 +203,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
     /**
      * Convert delivery date from checkout
      *
-     * You can use this if you use the following code in your checkout: https://github.com/myparcelnl/checkout
+     * You can use this if you use the following code in your checkout: https://github.com/MyParcelBE/checkout
      *
      * @param string $checkoutData
      * @return $this
@@ -230,7 +230,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
     /**
      * Convert pickup data from checkout
      *
-     * You can use this if you use the following code in your checkout: https://github.com/myparcelnl/checkout
+     * You can use this if you use the following code in your checkout: https://github.com/MyParcelBE/checkout
      *
      * @param string $checkoutData
      * @return $this
@@ -317,7 +317,9 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
     {
         $street = '';
         $number = '';
-        $number_suffix = '';
+        $box_number = '';
+
+        $fullStreet = str_ireplace(self::BOX_TRANSLATION_POSSIBILITIES, ' ' . self::BOX_NL, $fullStreet);
 
         $result = preg_match(self::SPLIT_STREET_REGEX, $fullStreet, $matches);
 
@@ -339,14 +341,14 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
             $number = $matches['number'];
         }
 
-        if (isset($matches['number_suffix'])) {
-            $number_suffix = trim($matches['number_suffix']);
+        if (isset($matches['box_number'])) {
+            $box_number = trim($matches['box_number']);
         }
 
         $streetData = array(
             'street' => $street,
             'number' => $number,
-            'number_suffix' => $number_suffix,
+            'box_number' => $box_number,
         );
 
         return $streetData;
@@ -410,7 +412,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
                         'street' => $this->getStreet(true),
                         'street_additional_info' => $this->getStreetAdditionalInfo(),
                         'number' => $this->getNumber(),
-                        'number_suffix' => $this->getNumberSuffix(),
+                        'box_number' => $this->getBoxNumber(),
                     ],
                 ]
             );
@@ -614,8 +616,8 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
             $this->setNumber($recipient['number']);
         }
 
-        if (key_exists('number_suffix', $recipient)) {
-            $this->setNumberSuffix($recipient['number_suffix']);
+        if (key_exists('box_number', $recipient)) {
+            $this->setBoxNumber($recipient['box_number']);
         }
 
         // Set options

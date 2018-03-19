@@ -4,24 +4,24 @@
  * Create one concept
  *
  * If you want to add improvements, please create a fork in our GitHub:
- * https://github.com/myparcelnl
+ * https://github.com/myparcelbe
  *
  * @author      Reindert Vetter <reindert@myparcel.nl>
  * @copyright   2010-2017 MyParcel
  * @license     http://creativecommons.org/licenses/by-nc-nd/3.0/nl/deed.en_US  CC BY-NC-ND 3.0 NL
- * @link        https://github.com/myparcelnl/sdk
+ * @link        https://github.com/myparcelbe/sdk
  * @since       File available since Release v0.1.0
  */
 
-namespace MyParcelNL\Sdk\tests\SendConsignments\SendReferenceIdentifierConsignmentTest;
+namespace MyParcelBE\Sdk\tests\SendConsignments\SendReferenceIdentifierConsignmentTest;
 
-use MyParcelNL\Sdk\src\Helper\MyParcelCollection;
-use MyParcelNL\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
+use MyParcelBE\Sdk\src\Helper\MyParcelCollection;
+use MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
 
 
 /**
  * Class SendReferenceIdentifierConsignmentTest
- * @package MyParcelNL\Sdk\tests\SendOneConsignmentTest
+ * @package MyParcelBE\Sdk\tests\SendOneConsignmentTest
  */
 class SendReferenceIdentifierConsignmentTest extends \PHPUnit_Framework_TestCase
 {
@@ -48,7 +48,7 @@ class SendReferenceIdentifierConsignmentTest extends \PHPUnit_Framework_TestCase
                 ->setCompany($consignmentTest['company'])
                 ->setStreet($consignmentTest['street'])
                 ->setNumber((string) $consignmentTest['number'])
-                ->setNumberSuffix($consignmentTest['number_suffix'])
+                ->setBoxNumber($consignmentTest['box_number'])
                 ->setPostalCode($consignmentTest['postal_code'])
                 ->setCity($consignmentTest['city'])
                 ->setEmail('reindert@myparcel.nl')
@@ -110,7 +110,7 @@ class SendReferenceIdentifierConsignmentTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals($consignmentTest['company'], $savedConsignment->getCompany(), 'getCompany()');
             $this->assertEquals($consignmentTest['full_street'], $savedConsignment->getFullStreet(), 'getFullStreet()');
             $this->assertEquals($consignmentTest['number'], $savedConsignment->getNumber(), 'getNumber()');
-            $this->assertEquals($consignmentTest['number_suffix'], $savedConsignment->getNumberSuffix(), 'getNumberSuffix()');
+            $this->assertEquals($consignmentTest['box_number'], $savedConsignment->getBoxNumber(), 'getBoxNumber()');
             $this->assertEquals($consignmentTest['postal_code'], $savedConsignment->getPostalCode(), 'getPostalCode()');
             $this->assertEquals($consignmentTest['city'], $savedConsignment->getCity(), 'getCity()');
             $this->assertEquals($consignmentTest['phone'], $savedConsignment->getPhone(), 'getPhone()');
@@ -163,7 +163,7 @@ class SendReferenceIdentifierConsignmentTest extends \PHPUnit_Framework_TestCase
                 'full_street' => 'Plein 1940-45 3 b',
                 'street' => 'Plein 1940-45',
                 'number' => 3,
-                'number_suffix' => 'b',
+                'box_number' => 'b',
                 'postal_code' => '2231JE',
                 'city' => 'Rijnsburg',
                 'phone' => '123456',

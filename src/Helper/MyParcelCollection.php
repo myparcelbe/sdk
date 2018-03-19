@@ -3,20 +3,20 @@
  * Stores all data to communicate with the MyParcel API
  *
  * If you want to add improvements, please create a fork in our GitHub:
- * https://github.com/myparcelnl
+ * https://github.com/myparcelbe
  *
  * @author      Reindert Vetter <reindert@myparcel.nl>
  * @copyright   2010-2017 MyParcel
  * @license     http://creativecommons.org/licenses/by-nc-nd/3.0/nl/deed.en_US  CC BY-NC-ND 3.0 NL
- * @link        https://github.com/myparcelnl/sdk
+ * @link        https://github.com/myparcelbe/sdk
  * @since       File available since Release v0.1.0
  */
 
-namespace MyParcelNL\Sdk\src\Helper;
+namespace MyParcelBE\Sdk\src\Helper;
 
-use MyParcelNL\Sdk\src\Model\MyParcelConsignment;
-use MyParcelNL\Sdk\src\Model\MyParcelRequest;
-use MyParcelNL\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
+use MyParcelBE\Sdk\src\Model\MyParcelConsignment;
+use MyParcelBE\Sdk\src\Model\MyParcelRequest;
+use MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
 
 
 /**
@@ -86,7 +86,7 @@ class MyParcelCollection
      *
      * @param bool $throwException
      *
-     * @return \MyParcelNL\Sdk\src\Model\Repository\MyParcelConsignmentRepository|null
+     * @return \MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository|null
      * @throws \Exception
      */
     public function getOneConsignment($throwException = true)
@@ -177,7 +177,7 @@ class MyParcelCollection
     }
 
     /**
-     * @param \MyParcelNL\Sdk\src\Model\Repository\MyParcelConsignmentRepository $consignment
+     * @param \MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository $consignment
      *
      * @return $this
      * @throws \Exception

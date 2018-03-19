@@ -1,5 +1,5 @@
 {
-    "name": "myparcelnl/sdk",
+    "name": "myparcelbe/sdk",
     "version": "v1.3.7",
     "description": "This package is designed to send and receive data from MyParcel by means of an API.",
     "homepage": "https://www.myparcel.nl",
@@ -15,10 +15,10 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/myparcelnl/sdk"
+        "url": "https://github.com/myparcelbe/sdk"
     },
     "bugs": {
-        "url": "https://github.com/myparcelnl/sdk/issues"
+        "url": "https://github.com/myparcelbe/sdk/issues"
     },
     "require": {
         "php": ">=5.6.5 <7.2"
