@@ -298,6 +298,8 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
      */
     public function isCorrectAddress($fullStreet)
     {
+        $fullStreet = str_ireplace(self::BOX_TRANSLATION_POSSIBILITIES, ' ' . self::BOX_NL, $fullStreet);
+
         $result = preg_match(self::SPLIT_STREET_REGEX, $fullStreet, $matches);
 
         return (bool) $result;
