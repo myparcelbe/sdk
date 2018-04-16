@@ -3,18 +3,18 @@
  * This model represents one request
  *
  * If you want to add improvements, please create a fork in our GitHub:
- * https://github.com/myparcelnl
+ * https://github.com/myparcelbe
  *
  * @author      Reindert Vetter <reindert@myparcel.nl>
  * @copyright   2010-2017 MyParcel
  * @license     http://creativecommons.org/licenses/by-nc-nd/3.0/nl/deed.en_US  CC BY-NC-ND 3.0 NL
- * @link        https://github.com/myparcelnl/sdk
+ * @link        https://github.com/myparcelbe/sdk
  * @since       File available since Release v0.1.0
  */
 
-namespace MyParcelNL\Sdk\src\Model;
+namespace MyParcelBE\Sdk\src\Model;
 
-use MyParcelNL\Sdk\src\Helper\MyParcelCurl;
+use MyParcelBE\Sdk\src\Helper\MyParcelCurl;
 
 class MyParcelRequest
 {
@@ -280,13 +280,13 @@ class MyParcelRequest
      */
     public function getUserAgentFromComposer()
     {
-        $composer = 'vendor/myparcelnl/sdk/composer.json';
+        $composer = 'vendor/myparcelbe/sdk/composer.json';
         if (file_exists($composer)) {
             $composerData = file_get_contents($composer);
             $jsonComposerData = json_decode($composerData, true);
             if (!empty($jsonComposerData['version'])) {
                 $version = str_replace('v', '', $jsonComposerData['version']);
-                return 'MyParcelNL-SDK/' . $version;
+                return 'MyParcelBE-SDK/' . $version;
             }
         }
 

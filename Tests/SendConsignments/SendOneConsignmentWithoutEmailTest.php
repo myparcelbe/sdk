@@ -3,24 +3,24 @@
  * Test to check if a consignment without E-mail address is being submitted
  *
  * If you want to add improvements, please create a fork in our GitHub:
- * https://github.com/myparcelnl
+ * https://github.com/myparcelbe
  *
  * @author      Reindert Vetter <reindert@myparcel.nl>
  * @copyright   2010-2017 MyParcel
  * @license     http://creativecommons.org/licenses/by-nc-nd/3.0/nl/deed.en_US  CC BY-NC-ND 3.0 NL
- * @link        https://github.com/myparcelnl/sdk
+ * @link        https://github.com/myparcelbe/sdk
  * @since       File available since Release v0.1.0
  */
 
-namespace myparcelnl\sdk\Tests\SendConsignments;
+namespace myparcelbe\sdk\Tests\SendConsignments;
 
 
-use MyParcelNL\Sdk\src\Helper\MyParcelCollection;
-use MyParcelNL\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
+use MyParcelBE\Sdk\src\Helper\MyParcelCollection;
+use MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
 
 /**
  * Class SendOneConsignmentWithoutEmailTest
- * @package MyParcelNL\Sdk\tests\SendOneConsignmentWithoutEmailTest
+ * @package MyParcelBE\Sdk\tests\SendOneConsignmentWithoutEmailTest
  */
 class SendOneConsignmentWithoutEmailTest extends \PHPUnit_Framework_TestCase
 {

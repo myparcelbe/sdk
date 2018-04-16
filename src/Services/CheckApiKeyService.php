@@ -3,18 +3,18 @@
  * A services to check if the API-key is correct
  *
  * If you want to add improvements, please create a fork in our GitHub:
- * https://github.com/myparcelnl
+ * https://github.com/myparcelbe
  *
  * @author      Reindert Vetter <reindert@myparcel.nl>
  * @copyright   2010-2017 MyParcel
  * @license     http://creativecommons.org/licenses/by-nc-nd/3.0/nl/deed.en_US  CC BY-NC-ND 3.0 NL
- * @link        https://github.com/myparcelnl/sdk
+ * @link        https://github.com/myparcelbe/sdk
  * @since       File available since Release v1.1.7
  */
 
-namespace MyParcelNL\Sdk\src\Services;
+namespace MyParcelBE\Sdk\src\Services;
 
-use MyParcelNL\Sdk\src\Model\MyParcelRequest;
+use MyParcelBE\Sdk\src\Model\MyParcelRequest;
 
 class CheckApiKeyService
 {

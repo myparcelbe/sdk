@@ -3,25 +3,25 @@
  * The repository of a MyParcel consignment
  *
  * If you want to add improvements, please create a fork in our GitHub:
- * https://github.com/myparcelnl
+ * https://github.com/myparcelbe
  *
  * @author      Reindert Vetter <reindert@myparcel.nl>
  * @copyright   2010-2017 MyParcel
  * @license     http://creativecommons.org/licenses/by-nc-nd/3.0/nl/deed.en_US  CC BY-NC-ND 3.0 NL
- * @link        https://github.com/myparcelnl/sdk
+ * @link        https://github.com/myparcelbe/sdk
  * @since       File available since Release v0.1.0
  */
-namespace MyParcelNL\Sdk\src\Model\Repository;
+namespace MyParcelBE\Sdk\src\Model\Repository;
 
 
-use MyParcelNL\Sdk\src\Model\MyParcelConsignment;
-use MyParcelNL\Sdk\src\Model\MyParcelCustomsItem;
+use MyParcelBE\Sdk\src\Model\MyParcelConsignment;
+use MyParcelBE\Sdk\src\Model\MyParcelCustomsItem;
 
 /**
  * The repository of a MyParcel consignment
  *
  * Class MyParcelConsignmentRepository
- * @package MyParcelNL\Sdk\Model\Repository
+ * @package MyParcelBE\Sdk\Model\Repository
  */
 class MyParcelConsignmentRepository extends MyParcelConsignment
 {
@@ -156,7 +156,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
     /**
      * Get delivery type from checkout
      *
-     * You can use this if you use the following code in your checkout: https://github.com/myparcelnl/checkout
+     * You can use this if you use the following code in your checkout: https://github.com/myparcelbe/checkout
      *
      * @param string $checkoutData
      * @return int
@@ -203,7 +203,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
     /**
      * Convert delivery date from checkout
      *
-     * You can use this if you use the following code in your checkout: https://github.com/myparcelnl/checkout
+     * You can use this if you use the following code in your checkout: https://github.com/myparcelbe/checkout
      *
      * @param string $checkoutData
      * @return $this
@@ -230,7 +230,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
     /**
      * Convert pickup data from checkout
      *
-     * You can use this if you use the following code in your checkout: https://github.com/myparcelnl/checkout
+     * You can use this if you use the following code in your checkout: https://github.com/myparcelbe/checkout
      *
      * @param string $checkoutData
      * @return $this

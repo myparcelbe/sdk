@@ -4,26 +4,26 @@
  * Test for split addresses from full street
  *
  * If you want to add improvements, please create a fork in our GitHub:
- * https://github.com/myparcelnl
+ * https://github.com/myparcelbe
  *
  * @author      Reindert Vetter <reindert@myparcel.nl>
  * @copyright   2010-2017 MyParcel
  * @license     http://creativecommons.org/licenses/by-nc-nd/3.0/nl/deed.en_US  CC BY-NC-ND 3.0 NL
- * @link        https://github.com/myparcelnl/sdk
+ * @link        https://github.com/myparcelbe/sdk
  * @since       File available since Release v0.1.0
  */
 
-namespace MyParcelNL\Sdk\tests\SendConsignments\
+namespace MyParcelBE\Sdk\tests\SendConsignments\
 SendOneConsignmentTest;
 
-use MyParcelNL\Sdk\src\Helper\MyParcelCollection;
-use MyParcelNL\Sdk\src\Model\MyParcelRequest;
-use MyParcelNL\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
+use MyParcelBE\Sdk\src\Helper\MyParcelCollection;
+use MyParcelBE\Sdk\src\Model\MyParcelRequest;
+use MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
 
 
 /**
  * Class SendOneConsignmentTest
- * @package MyParcelNL\Sdk\tests\SendConsignmentsTest
+ * @package MyParcelBE\Sdk\tests\SendConsignmentsTest
  */
 class SendMultipleConsignmentsTest extends \PHPUnit_Framework_TestCase
 {

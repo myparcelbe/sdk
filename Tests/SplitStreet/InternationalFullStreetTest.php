@@ -5,30 +5,30 @@
  * whether the street has remained the same after the request.
  *
  * If you want to add improvements, please create a fork in our GitHub:
- * https://github.com/myparcelnl
+ * https://github.com/myparcelbe
  *
  * @author      Reindert Vetter <reindert@myparcel.nl>
  * @copyright   2010-2017 MyParcel
  * @license     http://creativecommons.org/licenses/by-nc-nd/3.0/nl/deed.en_US  CC BY-NC-ND 3.0 NL
- * @link        https://github.com/myparcelnl/sdk
+ * @link        https://github.com/myparcelbe/sdk
  * @since       File available since Release v0.1.0
  */
 
-namespace MyParcelNL\Sdk\tests\CreateConsignments\InternationalFullStreetTest;
+namespace MyParcelBE\Sdk\tests\CreateConsignments\InternationalFullStreetTest;
 
-use MyParcelNL\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
+use MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
 
 
 /**
  * Class InternationalFullStreetTest
  *
- * @package MyParcelNL\Sdk\tests\InternationalFullStreetTest
+ * @package MyParcelBE\Sdk\tests\InternationalFullStreetTest
  */
 class InternationalFullStreetTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers \MyParcelNL\Sdk\src\Model\Repository\MyParcelConsignmentRepository::getFullStreet
+     * @covers \MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository::getFullStreet
      * @dataProvider additionProvider()
      */
     public function testSplitStreet($cc, $fullStreet)
