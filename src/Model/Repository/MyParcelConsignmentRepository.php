@@ -25,14 +25,13 @@ use MyParcelBE\Sdk\src\Model\MyParcelCustomsItem;
  */
 class MyParcelConsignmentRepository extends MyParcelConsignment
 {
+    const BOX_NL = 'bus';
+    const BOX_TRANSLATION_POSSIBILITIES = [' boîte', ' box', ' bte', ' Bus'];
 
     /**
      * Regular expression used to split street name from house number.
-     *
-     * For the full description go to:
-     * @link https://gist.github.com/RichardPerdaan/1e6ce1588f3990e856b55255572692d1
      */
-    const SPLIT_STREET_REGEX = '~(?P<street>.*?)\s?(?P<street_suffix>(?P<number>[\d]+)[\s-]{0,2}(?P<box_number>[a-zA-Z/\s]{0,5}$|[0-9/]{0,5}$|\s[a-zA-Z]{1}[0-9]{0,3}$|\s[0-9]{2}[a-zA-Z]{0,3}$))$~';
+    const SPLIT_STREET_REGEX = '~(?P<street>.*?)\s(?P<street_suffix>(?P<number>[^\s]{1,8})\s?(?P<box_separator>' . self::BOX_NL . '?)?\s?(?P<box_number>\d{0,8}$))$~';
 
     /**
      * Consignment types
@@ -70,7 +69,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
         }
 
         if ($this->getBoxNumber()) {
-            $fullStreet .= ' ' . $this->getBoxNumber();
+            $fullStreet .= ' ' . self::BOX_NL . ' ' . $this->getBoxNumber();
         }
 
         return trim($fullStreet);
@@ -126,6 +125,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
      * Encode all the data before sending it to MyParcel
      *
      * @return array
+     * @throws \Exception
      */
     public function apiEncode()
     {
@@ -300,6 +300,8 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
      */
     public function isCorrectAddress($fullStreet)
     {
+        $fullStreet = str_ireplace(self::BOX_TRANSLATION_POSSIBILITIES, ' ' . self::BOX_NL, $fullStreet);
+
         $result = preg_match(self::SPLIT_STREET_REGEX, $fullStreet, $matches);
 
         return (bool) $result;
@@ -320,6 +322,8 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
         $street = '';
         $number = '';
         $box_number = '';
+
+        $fullStreet = str_ireplace(self::BOX_TRANSLATION_POSSIBILITIES, ' ' . self::BOX_NL, $fullStreet);
 
         $result = preg_match(self::SPLIT_STREET_REGEX, $fullStreet, $matches);
 
