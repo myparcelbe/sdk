@@ -480,9 +480,7 @@ class MyParcelConsignment extends MyParcelClassConstants
      * Street number
      *
      * Whole numeric value
-     * Pattern: [0-9]+
-     * Example: 10. 20. NOT 2,3
-     * Required: Yes for NL
+     * Required: Yes for BE
      *
      * @param string $number
      *
