@@ -22,7 +22,7 @@ use MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
  * Class SplitStreetTest
  * @package MyParcelBE\Sdk\tests\SplitStreetTest
  */
-class SplitLongStreetTest extends \PHPUnit_Framework_TestCase
+class SplitLongStreetTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -57,7 +57,7 @@ class SplitLongStreetTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [
-                'BE',
+                'NZ',
                 'full_street_test' => 'Ir. Mr. Dr. van Waterschoot van der Grachtstraat in Heerlen 14 t',
                 'street' => 'Ir. Mr. Dr. van Waterschoot van der',
                 'street_additional_info' => 'Grachtstraat in Heerlen 14 t',
@@ -69,25 +69,25 @@ class SplitLongStreetTest extends \PHPUnit_Framework_TestCase
                 'street_additional_info' => '',
             ],
             [
-                'BE',
+                'NZ',
                 'full_street_test' => 'testtienpp testtienpp',
                 'street' => 'testtienpp testtienpp',
                 'street_additional_info' => '',
             ],
             [
-                'BE',
+                'NZ',
                 'full_street_test' => 'Wethouder Fierman Eduard Meerburg senior kade 14 t',
                 'street' => 'Wethouder Fierman Eduard Meerburg senior',
                 'street_additional_info' => 'kade 14 t',
             ],
             [
-                'BE',
+                'NZ',
                 'full_street_test' => 'Ir. Mr. Dr. van Waterschoot van der Grachtstraat 14 t',
-                'street' => 'Ir. Mr. Dr. van Waterschoot van der 14 t',
-                'street_additional_info' => 'Grachtstraat',
+                'street' => 'Ir. Mr. Dr. van Waterschoot van der',
+                'street_additional_info' => 'Grachtstraat 14 t',
             ],
             [
-                'BE',
+                'NZ',
                 'full_street_test' => 'Koestraat 554 t',
                 'street' => 'Koestraat 554 t',
                 'street_additional_info' => '',

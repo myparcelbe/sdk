@@ -23,7 +23,7 @@ use MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
  * Class SendMorningShipmentTest
  * @package MyParcelBE\Sdk\tests\SendOneConsignmentTest
  */
-class SendMorningShipmentTest extends \PHPUnit_Framework_TestCase
+class SendMorningShipmentTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Test one shipment with createConcepts()

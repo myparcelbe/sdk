@@ -23,7 +23,7 @@ use MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
  * Class SendMailboxConsignmentTest
  * @package MyParcelBE\Sdk\tests\SendMailboxConsignmentTest
  */
-class SendMailboxConsignmentTest extends \PHPUnit_Framework_TestCase
+class SendMailboxConsignmentTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

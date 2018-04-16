@@ -25,7 +25,7 @@ use MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
  * Class SendOneConsignmentTest
  * @package MyParcelBE\Sdk\tests\SendConsignmentsTest
  */
-class SendMultipleConsignmentsTest extends \PHPUnit_Framework_TestCase
+class SendMultipleConsignmentsTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Test one shipment with createConcepts()

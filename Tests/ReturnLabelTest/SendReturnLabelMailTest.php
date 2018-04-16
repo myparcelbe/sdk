@@ -21,7 +21,7 @@ namespace MyParcelBE\Sdk\Tests\ReturnLabelTest;
 use MyParcelBE\Sdk\src\Helper\MyParcelCollection;
 use MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
 
-class SendReturnLabelMailTest extends \PHPUnit_Framework_TestCase
+class SendReturnLabelMailTest extends \PHPUnit\Framework\TestCase
 {
     public function testSendReturnLabelMail()
     {
