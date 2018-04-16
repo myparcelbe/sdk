@@ -127,7 +127,7 @@ class SendUserAgentTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals($consignmentTest['company'], $consignment->getCompany(), 'getCompany()');
             $this->assertEquals($consignmentTest['full_street'], $consignment->getFullStreet(), 'getFullStreet()');
             $this->assertEquals($consignmentTest['number'], $consignment->getNumber(), 'getNumber()');
-            $this->assertEquals($consignmentTest['number_suffix'], $consignment->getNumberSuffix(), 'getNumberSuffix()');
+            $this->assertEquals($consignmentTest['box_number'], $consignment->getBoxNumber(), 'getBoxNumber()');
             $this->assertEquals($consignmentTest['postal_code'], $consignment->getPostalCode(), 'getPostalCode()');
             $this->assertEquals($consignmentTest['city'], $consignment->getCity(), 'getCity()');
             $this->assertEquals($consignmentTest['phone'], $consignment->getPhone(), 'getPhone()');
@@ -221,7 +221,7 @@ class SendUserAgentTest extends \PHPUnit_Framework_TestCase
                 'full_street' => 'Koestraat 55',
                 'street' => 'Koestraat',
                 'number' => 55,
-                'number_suffix' => '',
+                'box_number' => '',
                 'postal_code' => '2231JE',
                 'city' => 'Katwijk',
                 'phone' => '123-45-235-435',
@@ -236,7 +236,7 @@ class SendUserAgentTest extends \PHPUnit_Framework_TestCase
                 'full_street' => 'Koestraat 55',
                 'street' => 'Koestraat',
                 'number' => 55,
-                'number_suffix' => '',
+                'box_number' => '',
                 'postal_code' => '2231JE',
                 'city' => 'Katwijk',
                 'phone' => '123-45-235-435',

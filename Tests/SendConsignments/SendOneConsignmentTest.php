@@ -94,7 +94,7 @@ class SendOneConsignmentTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals($consignmentTest['company'], $consignment->getCompany(), 'getCompany()');
             $this->assertEquals($consignmentTest['full_street'], $consignment->getFullStreet(), 'getFullStreet()');
             $this->assertEquals($consignmentTest['number'], $consignment->getNumber(), 'getNumber()');
-            $this->assertEquals($consignmentTest['number_suffix'], $consignment->getNumberSuffix(), 'getNumberSuffix()');
+            $this->assertEquals($consignmentTest['box_number'], $consignment->getBoxNumber(), 'getBoxNumber()');
             $this->assertEquals($consignmentTest['postal_code'], $consignment->getPostalCode(), 'getPostalCode()');
             $this->assertEquals($consignmentTest['city'], $consignment->getCity(), 'getCity()');
             $this->assertEquals($consignmentTest['phone'], $consignment->getPhone(), 'getPhone()');
@@ -162,7 +162,7 @@ class SendOneConsignmentTest extends \PHPUnit_Framework_TestCase
                 'full_street' => 'Plein 1940-45 3 b',
                 'street' => 'Plein 1940-45',
                 'number' => 3,
-                'number_suffix' => 'b',
+                'box_number' => 'b',
                 'postal_code' => '2231JE',
                 'city' => 'Rijnsburg',
                 'phone' => '123456',
@@ -176,7 +176,7 @@ class SendOneConsignmentTest extends \PHPUnit_Framework_TestCase
                 'full_street' => 'Koestraat 55',
                 'street' => 'Koestraat',
                 'number' => 55,
-                'number_suffix' => '',
+                'box_number' => '',
                 'postal_code' => '2231JE',
                 'city' => 'Katwijk',
                 'phone' => '123-45-235-435',
@@ -197,7 +197,7 @@ class SendOneConsignmentTest extends \PHPUnit_Framework_TestCase
                 'street' => 'Wethouder Fierman Eduard Meerburg senior',
                 'street_additional_info' => 'kade',
                 'number' => 14,
-                'number_suffix' => 't',
+                'box_number' => 't',
                 'postal_code' => '2231JE',
                 'city' => 'Katwijk',
                 'phone' => '123-45-235-435',
@@ -217,7 +217,7 @@ class SendOneConsignmentTest extends \PHPUnit_Framework_TestCase
                 'full_street' => 'Koestraat 55',
                 'street' => 'Koestraat',
                 'number' => 55,
-                'number_suffix' => '',
+                'box_number' => '',
                 'postal_code' => '2231JE',
                 'city' => 'Katwijk',
                 'phone' => '123-45-235-435',

@@ -78,7 +78,7 @@ class SendReturnLabelMailTest extends \PHPUnit_Framework_TestCase
             'email' => 'reindert@myparcel.nl',
             'company' => 'Mega Store',
             'full_street_test' => 'Koestraat 55',
-            'number_suffix' => '',
+            'box_number' => '',
             'postal_code' => '2231JE',
             'city' => 'Katwijk',
             'phone' => '123-45-235-435',

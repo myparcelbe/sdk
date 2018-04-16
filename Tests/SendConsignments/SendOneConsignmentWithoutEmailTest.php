@@ -94,7 +94,7 @@ class SendOneConsignmentWithoutEmailTest extends \PHPUnit_Framework_TestCase
                 'full_street' => 'Koestraat 55',
                 'street' => 'Koestraat',
                 'number' => 55,
-                'number_suffix' => '',
+                'box_number' => '',
                 'postal_code' => '2231JE',
                 'city' => 'Katwijk',
                 'phone' => '123-45-235-435',

@@ -93,7 +93,7 @@ $myParcelCollection
 ```php
     ->setStreet('Plein 1945')
     ->setNumber((string)55)
-    ->setNumberSuffix('b')
+    ->setBoxNumber('b')
 ```
 #### Create concept
 ```php

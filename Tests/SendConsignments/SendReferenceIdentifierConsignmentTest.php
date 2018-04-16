@@ -48,7 +48,7 @@ class SendReferenceIdentifierConsignmentTest extends \PHPUnit_Framework_TestCase
                 ->setCompany($consignmentTest['company'])
                 ->setStreet($consignmentTest['street'])
                 ->setNumber((string) $consignmentTest['number'])
-                ->setNumberSuffix($consignmentTest['number_suffix'])
+                ->setBoxNumber((string) $consignmentTest['box_number'])
                 ->setPostalCode($consignmentTest['postal_code'])
                 ->setCity($consignmentTest['city'])
                 ->setEmail('reindert@myparcel.nl')
@@ -110,7 +110,7 @@ class SendReferenceIdentifierConsignmentTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals($consignmentTest['company'], $savedConsignment->getCompany(), 'getCompany()');
             $this->assertEquals($consignmentTest['full_street'], $savedConsignment->getFullStreet(), 'getFullStreet()');
             $this->assertEquals($consignmentTest['number'], $savedConsignment->getNumber(), 'getNumber()');
-            $this->assertEquals($consignmentTest['number_suffix'], $savedConsignment->getNumberSuffix(), 'getNumberSuffix()');
+            $this->assertEquals($consignmentTest['box_number'], $savedConsignment->getBoxNumber(), 'getBoxNumber()');
             $this->assertEquals($consignmentTest['postal_code'], $savedConsignment->getPostalCode(), 'getPostalCode()');
             $this->assertEquals($consignmentTest['city'], $savedConsignment->getCity(), 'getCity()');
             $this->assertEquals($consignmentTest['phone'], $savedConsignment->getPhone(), 'getPhone()');
@@ -163,7 +163,7 @@ class SendReferenceIdentifierConsignmentTest extends \PHPUnit_Framework_TestCase
                 'full_street' => 'Plein 1940-45 3 b',
                 'street' => 'Plein 1940-45',
                 'number' => 3,
-                'number_suffix' => 'b',
+                'box_number' => 'b',
                 'postal_code' => '2231JE',
                 'city' => 'Rijnsburg',
                 'phone' => '123456',

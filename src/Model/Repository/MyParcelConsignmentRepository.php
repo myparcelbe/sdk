@@ -32,7 +32,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
      * For the full description go to:
      * @link https://gist.github.com/RichardPerdaan/1e6ce1588f3990e856b55255572692d1
      */
-    const SPLIT_STREET_REGEX = '~(?P<street>.*?)\s?(?P<street_suffix>(?P<number>[\d]+)[\s-]{0,2}(?P<number_suffix>[a-zA-Z/\s]{0,5}$|[0-9/]{0,5}$|\s[a-zA-Z]{1}[0-9]{0,3}$|\s[0-9]{2}[a-zA-Z]{0,3}$))$~';
+    const SPLIT_STREET_REGEX = '~(?P<street>.*?)\s?(?P<street_suffix>(?P<number>[\d]+)[\s-]{0,2}(?P<box_number>[a-zA-Z/\s]{0,5}$|[0-9/]{0,5}$|\s[a-zA-Z]{1}[0-9]{0,3}$|\s[0-9]{2}[a-zA-Z]{0,3}$))$~';
 
     /**
      * Consignment types
@@ -69,8 +69,8 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
             $fullStreet .= ' ' . $this->getNumber();
         }
 
-        if ($this->getNumberSuffix()) {
-            $fullStreet .= ' ' . $this->getNumberSuffix();
+        if ($this->getBoxNumber()) {
+            $fullStreet .= ' ' . $this->getBoxNumber();
         }
 
         return trim($fullStreet);
@@ -96,7 +96,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
             $streetData = $this->splitStreet($fullStreet);
             $this->setStreet($streetData['street']);
             $this->setNumber($streetData['number']);
-            $this->setNumberSuffix($streetData['number_suffix']);
+            $this->setBoxNumber($streetData['box_number']);
         } else {
             $this->setStreet($fullStreet);
         }
@@ -319,7 +319,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
     {
         $street = '';
         $number = '';
-        $number_suffix = '';
+        $box_number = '';
 
         $result = preg_match(self::SPLIT_STREET_REGEX, $fullStreet, $matches);
 
@@ -341,14 +341,14 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
             $number = $matches['number'];
         }
 
-        if (isset($matches['number_suffix'])) {
-            $number_suffix = trim($matches['number_suffix']);
+        if (isset($matches['box_number'])) {
+            $box_number = trim($matches['box_number']);
         }
 
         $streetData = array(
             'street' => $street,
             'number' => $number,
-            'number_suffix' => $number_suffix,
+            'box_number' => $box_number,
         );
 
         return $streetData;
@@ -418,7 +418,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
                         'street' => $this->getStreet(true),
                         'street_additional_info' => $this->getStreetAdditionalInfo(),
                         'number' => $this->getNumber(),
-                        'number_suffix' => $this->getNumberSuffix(),
+                        'box_number' => $this->getBoxNumber(),
                     ],
                 ]
             );
@@ -622,8 +622,8 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
             $this->setNumber($recipient['number']);
         }
 
-        if (key_exists('number_suffix', $recipient)) {
-            $this->setNumberSuffix($recipient['number_suffix']);
+        if (key_exists('box_number', $recipient)) {
+            $this->setBoxNumber($recipient['box_number']);
         }
 
         // Set options

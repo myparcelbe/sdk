@@ -86,7 +86,7 @@ class MyParcelConsignment extends MyParcelClassConstants
     /**
      * @var string
      */
-    private $number_suffix = '';
+    private $box_number = '';
 
     /**
      * @var string
@@ -469,7 +469,7 @@ class MyParcelConsignment extends MyParcelClassConstants
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getNumber()
     {
@@ -484,7 +484,7 @@ class MyParcelConsignment extends MyParcelClassConstants
      * Example: 10. 20. NOT 2,3
      * Required: Yes for NL
      *
-     * @param int $number
+     * @param string $number
      *
      * @return $this
      */
@@ -496,25 +496,25 @@ class MyParcelConsignment extends MyParcelClassConstants
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getNumberSuffix()
+    public function getBoxNumber()
     {
-        return $this->number_suffix;
+        return $this->box_number;
     }
 
     /**
-     * Street number suffix.
+     * Street box number.
      *
      * Required: no
      *
-     * @param string $number_suffix
+     * @param int $box_number
      *
      * @return $this
      */
-    public function setNumberSuffix($number_suffix)
+    public function setBoxNumber($box_number)
     {
-        $this->number_suffix = $number_suffix;
+        $this->box_number = $box_number;
 
         return $this;
     }
@@ -899,7 +899,7 @@ class MyParcelConsignment extends MyParcelClassConstants
      *
      * Composite type containing integer and currency. The amount is without decimal
      * separators.
-     * Pattern: [0, 50, 250, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000]
+     * Pattern: [500]
      * Required: No
      *
      * @param int $insurance

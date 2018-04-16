@@ -130,7 +130,7 @@ class SendOneInternationalConsignmentTest extends \PHPUnit_Framework_TestCase
                 'full_street' => 'Plein 1940-45 3 b',
                 'street' => 'Plein 1940-45',
                 'number' => 3,
-                'number_suffix' => 'b',
+                'box_number' => 'b',
                 'postal_code' => '2231JE',
                 'city' => 'Rijnsburg',
                 'phone' => '123456',
