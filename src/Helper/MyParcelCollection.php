@@ -89,9 +89,9 @@ class MyParcelCollection
      * @return \MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository|null
      * @throws \Exception
      */
-    public function getOneConsignment($throwException = true)
+    public function getOneConsignment()
     {
-        if (count($this->getConsignments()) > 1 && $throwException) {
+        if (count($this->getConsignments()) > 1) {
             throw new \Exception('Can\'t run getOneConsignment(): Multiple items found');
         }
 
@@ -109,17 +109,6 @@ class MyParcelCollection
      */
     public function getConsignmentByReferenceId($id)
     {
-        // return consignment if only one is available
-        $consignment = $this->getOneConsignment(false);
-        if ($consignment !== null) {
-            return $consignment;
-        }
-
-        // return if referenceId is set as a key
-        if (key_exists(self::PREFIX_REFERENCE_ID . $id, $this->consignments)) {
-            return $this->getConsignments()[self::PREFIX_REFERENCE_ID . $id];
-        }
-
         // return if referenceId not is set as a key
         foreach ($this->getConsignments() as $consignment) {
             if ($consignment->getReferenceId() == $id) {
@@ -137,12 +126,6 @@ class MyParcelCollection
      */
     public function getConsignmentByApiId($id)
     {
-        // return consignment if only one is available
-        $consignment = $this->getOneConsignment(false);
-        if ($consignment !== null) {
-            return $consignment;
-        }
-
         // return if ApiId not is set as a key
         foreach ($this->getConsignments() as $consignment) {
             if ($consignment->getMyParcelConsignmentId() == $id) {
@@ -228,7 +211,9 @@ class MyParcelCollection
                             MyParcelRequest::REQUEST_HEADER_SHIPMENT
                         )
                         ->sendRequest();
+
                     $consignment->setMyParcelConsignmentId($request->getResult()['data']['ids'][0]['id']);
+
                 }
             }
         }
@@ -297,12 +282,21 @@ class MyParcelCollection
             throw new \Exception('Unable to transport data to MyParcel.');
         }
 
+        $consignmentsToReplace = [];
+
         foreach ($request->getResult()['data']['shipments'] as $shipment) {
             $consignment = $this->getConsignmentByApiId($shipment['id']);
             if ($consignment === null) {
                 $consignment = $this->getConsignmentByReferenceId($shipment['reference_identifier']);
             }
-            $consignment->apiDecode($shipment);
+
+            $consignmentsToReplace[] = $consignment->apiDecode($shipment);
+        }
+
+        $this->clearConsignmentsCollection();
+
+        foreach ($consignmentsToReplace as $consignmentToReplace) {
+            $this->addConsignment($consignmentToReplace);
         }
 
         return $this;
@@ -401,7 +395,7 @@ class MyParcelCollection
 
         header('Content-Type: application/pdf');
         header('Content-Length: ' . strlen($this->label_pdf));
-        header('Content-disposition: '.($inline_download === true ? "inline" : "attachment").'; filename="' . self::PREFIX_PDF_FILENAME . gmdate('Y-M-d H-i-s') . '.pdf"');
+        header('Content-disposition: ' . ($inline_download === true ? "inline" : "attachment") . '; filename="' . self::PREFIX_PDF_FILENAME . gmdate('Y-M-d H-i-s') . '.pdf"');
         header('Cache-Control: public, must-revalidate, max-age=0');
         header('Pragma: public');
         header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
@@ -418,8 +412,8 @@ class MyParcelCollection
      */
     public function sendReturnLabelMails()
     {
-        $apiKey = $this->getOneConsignment(false)->getApiKey();
-        $data = $this->apiEncodeReturnShipments($this->getOneConsignment(false));
+        $apiKey = $this->getConsignments()[0]->getApiKey();
+        $data = $this->apiEncodeReturnShipments($this->getConsignments()[0]);
 
         $request = (new MyParcelRequest())
             ->setUserAgent($this->getUserAgent())
@@ -438,7 +432,7 @@ class MyParcelCollection
 
         if (
             empty($result['data']['ids'][0]['id']) ||
-            (int)$result['data']['ids'][0]['id'] < 1
+            (int) $result['data']['ids'][0]['id'] < 1
         ) {
             throw new \Exception('Can\'t send retour label to customer. Please create an issue on GitHub or contact MyParcel; support@myparcel.nl. Note this request body: ' . $data);
         }
@@ -501,7 +495,7 @@ class MyParcelCollection
      *                                  only applied on the first page with labels. All subsequent pages will use the
      *                                  default positioning [1,2,3,4].
      *
-     * @param array|int|bool $positions
+     * @param integer $positions
      *
      * @return $this
      */
@@ -560,6 +554,13 @@ class MyParcelCollection
     }
 
     /**
+     * Clear this collection
+     */
+    public function clearConsignmentsCollection() {
+        $this->consignments = [];
+    }
+
+    /**
      * Encode multiple shipments so that the data can be sent to MyParcel.
      *
      * @param $consignments MyParcelConsignmentRepository[]
@@ -580,7 +581,7 @@ class MyParcelCollection
     /**
      * Encode multiple ReturnShipment Objects
      *
-     * @param $consignment MyParcelConsignmentRepository
+     * @param MyParcelConsignmentRepository $consignment
      *
      * @return string
      */

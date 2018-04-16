@@ -43,7 +43,9 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
     const DELIVERY_TYPE_RETAIL              = 4;
     const DELIVERY_TYPE_RETAIL_EXPRESS      = 5;
 
-    const PACKAGE_TYPE_NORMAL = 2;
+    const DEFAULT_DELIVERY_TYPE = self::DELIVERY_TYPE_STANDARD;
+
+    const PACKAGE_TYPE_NORMAL = 1;
 
     const DEFAULT_PACKAGE_TYPE = self::PACKAGE_TYPE_NORMAL;
 
@@ -278,7 +280,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
      *
      * @return array
      */
-    public function encodeReturnShipment(){
+    public function encodeReturnShipment() {
         $data = [
             'parent' => $this->getMyParcelConsignmentId(),
             'carrier' => 1,
@@ -300,7 +302,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
     {
         $result = preg_match(self::SPLIT_STREET_REGEX, $fullStreet, $matches);
 
-        return (bool)$result;
+        return (bool) $result;
     }
 
     /**
@@ -370,17 +372,23 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
      */
     private function encodeBaseOptions()
     {
+        $packageType = $this->getPackageType();
+
+        if ($packageType == null) {
+            $packageType = self::DEFAULT_PACKAGE_TYPE;
+        }
+
         $this->consignmentEncoded = [
             'recipient' => [
                 'cc' => $this->getCountry(),
                 'person' => $this->getPerson(),
                 'postal_code' => $this->getPostalCode(),
-                'city' => (string)$this->getCity(),
-                'email' => (string)$this->getEmail(),
-                'phone' => (string)$this->getPhone(),
+                'city' => (string) $this->getCity(),
+                'email' => (string) $this->getEmail(),
+                'phone' => (string) $this->getPhone(),
             ],
             'options' => [
-                'package_type' => $this->getPackageType()?:self::TYPE_STANDARD,
+                'package_type' => $packageType,
                 'label_description' => $this->getLabelDescription(),
             ],
             'carrier' => 1,
@@ -631,7 +639,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
         if (isset($options['delivery_type'])) {
             $this->setDeliveryType($options['delivery_type']);
         } else {
-            $this->setDeliveryType(self::DEFAULT_PACKAGE_TYPE);
+            $this->setDeliveryType(self::DEFAULT_DELIVERY_TYPE);
         }
 
         return $this;
