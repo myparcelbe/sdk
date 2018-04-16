@@ -156,7 +156,7 @@ class SendReferenceIdentifierConsignmentTest extends \PHPUnit_Framework_TestCase
             [
                 'api_key' => getenv('API_KEY'),
                 'reference_identifier' => (string)(new \DateTime())->getTimestamp(),
-                'cc' => 'NL',
+                'cc' => 'BE',
                 'person' => 'Reindert',
                 'company' => 'Big Sale BV',
                 'full_street_test' => 'Plein 1940-45 3b',

@@ -153,7 +153,7 @@ class SendOneConsignmentTest extends \PHPUnit_Framework_TestCase
         return [
             [
                 'api_key' => getenv('API_KEY'),
-                'cc' => 'NL',
+                'cc' => 'BE',
                 'person' => 'Reindert',
                 'company' => 'Big Sale BV',
                 'full_street_test' => 'Plein 1940-45 3b',
@@ -167,7 +167,7 @@ class SendOneConsignmentTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'api_key' => getenv('API_KEY'),
-                'cc' => 'NL',
+                'cc' => 'BE',
                 'person' => 'Piet',
                 'company' => 'Mega Store',
                 'full_street_test' => 'Koestraat 55',
@@ -187,7 +187,7 @@ class SendOneConsignmentTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'api_key' => getenv('API_KEY'),
-                'cc' => 'NL',
+                'cc' => 'BE',
                 'person' => 'Piet',
                 'company' => 'Mega Store',
                 'full_street_test' => 'testtienpp testtienpp testtienpp testtienpp testtienpp 14 t',
@@ -207,7 +207,7 @@ class SendOneConsignmentTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'api_key' => getenv('API_KEY'),
-                'cc' => 'NL',
+                'cc' => 'BE',
                 'person' => 'The insurance man',
                 'company' => 'Mega Store',
                 'full_street_test' => 'Koestraat 55',

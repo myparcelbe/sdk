@@ -163,7 +163,7 @@ class SendMultiReferenceIdentifierConsignmentTest extends \PHPUnit_Framework_Tes
             [
                 'api_key' => getenv('API_KEY'),
                 'reference_identifier' => (string)(new \DateTime())->getTimestamp() . '_test3',
-                'cc' => 'NL',
+                'cc' => 'BE',
                 'person' => 'Reindert',
                 'company' => 'Big Sale BV',
                 'full_street_test' => 'Plein 1940-45 3b',
@@ -178,7 +178,7 @@ class SendMultiReferenceIdentifierConsignmentTest extends \PHPUnit_Framework_Tes
             [
                 'api_key' => getenv('API_KEY'),
                 'reference_identifier' => (string)(new \DateTime())->getTimestamp() . '_test2',
-                'cc' => 'NL',
+                'cc' => 'BE',
                 'person' => 'Reindert',
                 'company' => 'Big Sale BV',
                 'full_street_test' => 'Plein 1940-45 3b',

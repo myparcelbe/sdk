@@ -75,13 +75,13 @@ class SplitLongStreetTest extends \PHPUnit_Framework_TestCase
                 'street_additional_info' => 'kade 14 t',
             ],
             [
-                'NL',
+                'BE',
                 'full_street_test' => 'Ir. Mr. Dr. van Waterschoot van der Grachtstraat 14 t',
                 'street' => 'Ir. Mr. Dr. van Waterschoot van der 14 t',
                 'street_additional_info' => 'Grachtstraat',
             ],
             [
-                'NL',
+                'BE',
                 'full_street_test' => 'Koestraat 554 t',
                 'street' => 'Koestraat 554 t',
                 'street_additional_info' => '',

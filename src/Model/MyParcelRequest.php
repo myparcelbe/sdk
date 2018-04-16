@@ -21,7 +21,7 @@ class MyParcelRequest
     /**
      * API URL
      */
-    const REQUEST_URL = 'https://api.myparcel.nl';
+    const REQUEST_URL = 'https://api.sendmyparcel.be';
 
     /**
      * Supported request types.

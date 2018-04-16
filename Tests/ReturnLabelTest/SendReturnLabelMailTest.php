@@ -73,7 +73,7 @@ class SendReturnLabelMailTest extends \PHPUnit_Framework_TestCase
     {
         return [
             'api_key' => getenv('API_KEY'),
-            'cc' => 'NL',
+            'cc' => 'BE',
             'person' => 'Piet',
             'email' => 'reindert@myparcel.nl',
             'company' => 'Mega Store',

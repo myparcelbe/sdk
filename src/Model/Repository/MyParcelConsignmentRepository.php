@@ -75,7 +75,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
     }
 
     /**
-     * Splitting a full NL address and save it in this object
+     * Splitting a full BE address and save it in this object
      *
      * Required: Yes or use setStreet()
      *
@@ -90,7 +90,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
             throw new \Exception('First set the country code with setCountry() before running setFullStreet()');
         }
 
-        if ($this->getCountry() == 'NL') {
+        if ($this->getCountry() == 'BE') {
             $streetData = $this->splitStreet($fullStreet);
             $this->setStreet($streetData['street']);
             $this->setNumber($streetData['number']);
@@ -238,7 +238,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
      */
     public function setPickupAddressFromCheckout($checkoutData)
     {
-        if ($this->getCountry() !== 'NL') {
+        if ($this->getCountry() !== 'BE') {
             return $this;
         }
 
@@ -260,7 +260,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
         } else if ($aCheckoutData['price_comment'] == 'retailexpress') {
             $this->setDeliveryType(5);
         } else {
-            throw new \Exception('No PostNL location found in checkout data: ' . $checkoutData);
+            throw new \Exception('No bpost location found in checkout data: ' . $checkoutData);
         }
 
         $this
@@ -402,7 +402,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
      */
     private function encodeStreet()
     {
-        if ($this->getCountry() == 'NL') {
+        if ($this->getCountry() == 'BE') {
             $this->consignmentEncoded = array_merge_recursive(
                 $this->consignmentEncoded,
                 [
@@ -426,7 +426,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
      * @return $this
      */
     private function encodeExtraOptions() {
-        if ($this->getCountry() == 'NL') {
+        if ($this->getCountry() == 'BE') {
             $this->consignmentEncoded = array_merge_recursive(
                 $this->consignmentEncoded,
                 [

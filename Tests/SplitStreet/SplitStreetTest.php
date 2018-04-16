@@ -32,7 +32,7 @@ class SplitStreetTest extends \PHPUnit_Framework_TestCase
     public function testSplitStreet($fullStreetTest, $fullStreet, $street, $number, $numberSuffix)
     {
         $consignment = (new MyParcelConsignmentRepository())
-            ->setCountry('NL')
+            ->setCountry('BE')
             ->setFullStreet($fullStreetTest);
 
         $this->assertEquals($fullStreet, $consignment->getFullStreet(), 'Full street: ' . $fullStreetTest);
