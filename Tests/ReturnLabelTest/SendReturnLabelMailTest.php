@@ -12,7 +12,7 @@
  * @author      Reindert Vetter <reindert@myparcel.nl>
  * @copyright   2010-2017 MyParcel
  * @license     http://creativecommons.org/licenses/by-nc-nd/3.0/nl/deed.en_US  CC BY-NC-ND 3.0 NL
- * @link        https://github.com/MyParcelBE/magento
+ * @link        https://github.com/myparcelbe/magento
  * @since       File available since Release 2.0.0
  */
 
@@ -21,7 +21,7 @@ namespace MyParcelBE\Sdk\Tests\ReturnLabelTest;
 use MyParcelBE\Sdk\src\Helper\MyParcelCollection;
 use MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
 
-class SendReturnLabelMailTest extends \PHPUnit_Framework_TestCase
+class SendReturnLabelMailTest extends \PHPUnit\Framework\TestCase
 {
     public function testSendReturnLabelMail()
     {
@@ -73,7 +73,7 @@ class SendReturnLabelMailTest extends \PHPUnit_Framework_TestCase
     {
         return [
             'api_key' => getenv('API_KEY'),
-            'cc' => 'NL',
+            'cc' => 'BE',
             'person' => 'Piet',
             'email' => 'reindert@myparcel.nl',
             'company' => 'Mega Store',

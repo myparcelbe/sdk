@@ -24,7 +24,7 @@ use MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
  * Class SendOneInternationalConsignmentTest
  * @package MyParcelBE\Sdk\tests\SendOneConsignmentTest
  */
-class SendOneInternationalConsignmentTest extends \PHPUnit_Framework_TestCase
+class SendOneInternationalConsignmentTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

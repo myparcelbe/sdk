@@ -12,7 +12,7 @@
  * @since       File available since Release v0.1.0
  */
 
-namespace MyParcelBE\sdk\Tests\SendConsignments;
+namespace myparcelbe\sdk\Tests\SendConsignments;
 
 
 use MyParcelBE\Sdk\src\Helper\MyParcelCollection;
@@ -22,7 +22,7 @@ use MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
  * Class SendOneConsignmentWithoutEmailTest
  * @package MyParcelBE\Sdk\tests\SendOneConsignmentWithoutEmailTest
  */
-class SendOneConsignmentWithoutEmailTest extends \PHPUnit_Framework_TestCase
+class SendOneConsignmentWithoutEmailTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -87,7 +87,7 @@ class SendOneConsignmentWithoutEmailTest extends \PHPUnit_Framework_TestCase
         return [
             [
                 'api_key' => getenv('API_KEY'),
-                'cc' => 'NL',
+                'cc' => 'BE',
                 'person' => 'Piet',
                 'company' => 'Mega Store',
                 'full_street_test' => 'Koestraat 55',

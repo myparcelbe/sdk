@@ -28,7 +28,7 @@ To install the MyParcel SDK into your project, simply
 
 If you don't have experience with composer, it is possible to use the SDK without using composer.
 
-You can download the zip on the projects [releases](https://github.com/MyParcelBE/sdk/releases) page.
+You can download the zip on the projects [releases](https://github.com/myparcelbe/sdk/releases) page.
 
 1. Download the package zip (SDKvx.x.x.zip).
 2. Unzip the contents of the zip, and upload the vendor directory to your server.
@@ -37,7 +37,7 @@ You can download the zip on the projects [releases](https://github.com/MyParcelB
 
 ### Requirements
 
-The MyParcel SDK works on php versions 5.6, 7.0 and 7.1.
+The MyParcel SDK works on php versions 5.6, 7.x.
 Also the php curl extension needs to be installed.
 
 ### Quick start and examples
@@ -48,7 +48,7 @@ $myParcelCollection = new \MyParcelBE\Sdk\src\Helper\MyParcelCollection();
 $consignment = (new \MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository())
     ->setApiKey('api_key_from_MyParcel_backoffice')
     ->setReferenceId('Order 1203')
-    ->setCountry('NL')
+    ->setCountry('BE')
     ->setPerson('Piet Hier')
     ->setCompany('Piet BV')
     ->setFullStreet('Plein 1945 55b')
@@ -69,7 +69,7 @@ $myParcelCollection = new \MyParcelBE\Sdk\src\Helper\MyParcelCollection();
 $consignment = (new \MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository())
     ->setApiKey('api_key_from_MyParcel_backoffice')
     ->setReferenceId('Order 1203')
-    ->setCountry('NL')
+    ->setCountry('BE')
     ->setPerson('Piet Hier')
     ->setCompany('Piet BV')
     ->setFullStreet('Plein 1945 55b')
@@ -154,11 +154,13 @@ $myParcelCollection
     ->addConsignment($consignment)
     ->setLatestData();
 
-$consignment = $myParcelCollection
-    ->getOneConsignment();
+$consignments = $myParcelCollection
+    ->getConsignments();
 
-$status = $consignment->getStatus();
-$barcode = $consignment->getBarcode();
+$firstConsignment = $consignments[0];
+
+$status = $firstConsignment->getStatus();
+$barcode = $firstConsignment->getBarcode();
 ```
 
 ### Contribute

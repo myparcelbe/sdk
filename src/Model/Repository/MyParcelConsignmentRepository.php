@@ -42,7 +42,9 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
     const DELIVERY_TYPE_RETAIL              = 4;
     const DELIVERY_TYPE_RETAIL_EXPRESS      = 5;
 
-    const PACKAGE_TYPE_NORMAL = 2;
+    const DEFAULT_DELIVERY_TYPE = self::DELIVERY_TYPE_STANDARD;
+
+    const PACKAGE_TYPE_NORMAL = 1;
 
     const DEFAULT_PACKAGE_TYPE = self::PACKAGE_TYPE_NORMAL;
 
@@ -74,7 +76,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
     }
 
     /**
-     * Splitting a full NL address and save it in this object
+     * Splitting a full BE address and save it in this object
      *
      * Required: Yes or use setStreet()
      *
@@ -156,7 +158,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
     /**
      * Get delivery type from checkout
      *
-     * You can use this if you use the following code in your checkout: https://github.com/MyParcelBE/checkout
+     * You can use this if you use the following code in your checkout: https://github.com/myparcelbe/checkout
      *
      * @param string $checkoutData
      * @return int
@@ -203,7 +205,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
     /**
      * Convert delivery date from checkout
      *
-     * You can use this if you use the following code in your checkout: https://github.com/MyParcelBE/checkout
+     * You can use this if you use the following code in your checkout: https://github.com/myparcelbe/checkout
      *
      * @param string $checkoutData
      * @return $this
@@ -230,7 +232,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
     /**
      * Convert pickup data from checkout
      *
-     * You can use this if you use the following code in your checkout: https://github.com/MyParcelBE/checkout
+     * You can use this if you use the following code in your checkout: https://github.com/myparcelbe/checkout
      *
      * @param string $checkoutData
      * @return $this
@@ -238,7 +240,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
      */
     public function setPickupAddressFromCheckout($checkoutData)
     {
-        if ($this->getCountry() !== 'NL') {
+        if ($this->getCountry() !== 'BE') {
             return $this;
         }
 
@@ -260,7 +262,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
         } else if ($aCheckoutData['price_comment'] == 'retailexpress') {
             $this->setDeliveryType(5);
         } else {
-            throw new \Exception('No PostNL location found in checkout data: ' . $checkoutData);
+            throw new \Exception('No bpost location found in checkout data: ' . $checkoutData);
         }
 
         $this
@@ -374,6 +376,12 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
      */
     private function encodeBaseOptions()
     {
+        $packageType = $this->getPackageType();
+
+        if ($packageType == null) {
+            $packageType = self::DEFAULT_PACKAGE_TYPE;
+        }
+
         $this->consignmentEncoded = [
             'recipient' => [
                 'cc' => $this->getCountry(),
@@ -384,7 +392,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
                 'phone' => (string) $this->getPhone(),
             ],
             'options' => [
-                'package_type' => $this->getPackageType() ?: self::TYPE_STANDARD,
+                'package_type' => $packageType,
                 'label_description' => $this->getLabelDescription(),
             ],
             'carrier' => 1,
@@ -406,7 +414,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
      */
     private function encodeStreet()
     {
-        if ($this->getCountry() == 'NL') {
+        if ($this->getCountry() == 'BE') {
             $this->consignmentEncoded = array_merge_recursive(
                 $this->consignmentEncoded,
                 [
@@ -430,7 +438,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
      * @return $this
      */
     private function encodeExtraOptions() {
-        if ($this->getCountry() == 'NL') {
+        if ($this->getCountry() == 'BE') {
             $this->consignmentEncoded = array_merge_recursive(
                 $this->consignmentEncoded,
                 [
@@ -635,7 +643,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
         if (isset($options['delivery_type'])) {
             $this->setDeliveryType($options['delivery_type']);
         } else {
-            $this->setDeliveryType(self::DEFAULT_PACKAGE_TYPE);
+            $this->setDeliveryType(self::DEFAULT_DELIVERY_TYPE);
         }
 
         return $this;

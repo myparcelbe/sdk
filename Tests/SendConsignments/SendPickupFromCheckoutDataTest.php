@@ -23,7 +23,7 @@ use MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
  * Class SendPickupFromCheckoutDataTest
  * @package MyParcelBE\Sdk\tests\SendOneConsignmentTest
  */
-class SendPickupFromCheckoutDataTest extends \PHPUnit_Framework_TestCase
+class SendPickupFromCheckoutDataTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Test one shipment with createConcepts()
@@ -219,7 +219,7 @@ class SendPickupFromCheckoutDataTest extends \PHPUnit_Framework_TestCase
         return [
             [
                 'api_key' => getenv('API_KEY'),
-                'cc' => 'NL',
+                'cc' => 'BE',
                 'person' => 'Piet',
                 'company' => 'Mega Store',
                 'full_street_test' => 'Koestraat 55',
@@ -236,7 +236,7 @@ class SendPickupFromCheckoutDataTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'api_key' => getenv('API_KEY'),
-                'cc' => 'NL',
+                'cc' => 'BE',
                 'person' => 'Piet',
                 'company' => 'Mega Store',
                 'full_street_test' => 'Koestraat 55',

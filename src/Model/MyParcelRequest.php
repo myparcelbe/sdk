@@ -21,7 +21,7 @@ class MyParcelRequest
     /**
      * API URL
      */
-    const REQUEST_URL = 'https://api.myparcel.nl';
+    const REQUEST_URL = 'https://api.sendmyparcel.be';
 
     /**
      * Supported request types.
@@ -280,7 +280,7 @@ class MyParcelRequest
      */
     public function getUserAgentFromComposer()
     {
-        $composer = 'vendor/MyParcelBE/sdk/composer.json';
+        $composer = 'vendor/myparcelbe/sdk/composer.json';
         if (file_exists($composer)) {
             $composerData = file_get_contents($composer);
             $jsonComposerData = json_decode($composerData, true);

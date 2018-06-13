@@ -23,7 +23,7 @@ use MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
  * Class SendReferenceIdentifierConsignmentTest
  * @package MyParcelBE\Sdk\tests\SendOneConsignmentTest
  */
-class SendReferenceIdentifierConsignmentTest extends \PHPUnit_Framework_TestCase
+class SendReferenceIdentifierConsignmentTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -48,7 +48,7 @@ class SendReferenceIdentifierConsignmentTest extends \PHPUnit_Framework_TestCase
                 ->setCompany($consignmentTest['company'])
                 ->setStreet($consignmentTest['street'])
                 ->setNumber((string) $consignmentTest['number'])
-                ->setBoxNumber($consignmentTest['box_number'])
+                ->setBoxNumber((string) $consignmentTest['box_number'])
                 ->setPostalCode($consignmentTest['postal_code'])
                 ->setCity($consignmentTest['city'])
                 ->setEmail('reindert@myparcel.nl')
@@ -156,7 +156,7 @@ class SendReferenceIdentifierConsignmentTest extends \PHPUnit_Framework_TestCase
             [
                 'api_key' => getenv('API_KEY'),
                 'reference_identifier' => (string) (new \DateTime())->getTimestamp(),
-                'cc' => 'NL',
+                'cc' => 'BE',
                 'person' => 'Reindert',
                 'company' => 'Big Sale BV',
                 'full_street_test' => 'Plein 1940-45 3b',

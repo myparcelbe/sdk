@@ -23,7 +23,7 @@ use MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
  * Class SendNightShipmentTest
  * @package MyParcelBE\Sdk\tests\SendOneConsignmentTest
  */
-class SendNightShipmentTest extends \PHPUnit_Framework_TestCase
+class SendNightShipmentTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Test one shipment with createConcepts()
@@ -175,7 +175,7 @@ class SendNightShipmentTest extends \PHPUnit_Framework_TestCase
         return [
             [
                 'api_key' => getenv('API_KEY'),
-                'cc' => 'NL',
+                'cc' => 'BE',
                 'person' => 'Piet',
                 'company' => 'Mega Store',
                 'full_street_test' => 'Koestraat 55',
@@ -193,7 +193,7 @@ class SendNightShipmentTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'api_key' => getenv('API_KEY'),
-                'cc' => 'NL',
+                'cc' => 'BE',
                 'person' => 'Piet',
                 'company' => 'Mega Store',
                 'full_street_test' => 'Koestraat 55',

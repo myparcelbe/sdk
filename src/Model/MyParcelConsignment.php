@@ -469,7 +469,7 @@ class MyParcelConsignment extends MyParcelClassConstants
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getNumber()
     {
@@ -480,11 +480,9 @@ class MyParcelConsignment extends MyParcelClassConstants
      * Street number
      *
      * Whole numeric value
-     * Pattern: [0-9]+
-     * Example: 10. 20. NOT 2,3
-     * Required: Yes for NL
+     * Required: Yes for BE
      *
-     * @param int $number
+     * @param string $number
      *
      * @return $this
      */
@@ -496,7 +494,7 @@ class MyParcelConsignment extends MyParcelClassConstants
     }
 
     /**
-     * @return string
+     * @return int
      */
     public function getBoxNumber()
     {
@@ -504,17 +502,17 @@ class MyParcelConsignment extends MyParcelClassConstants
     }
 
     /**
-     * Street box number
+     * Street box number.
      *
      * Required: no
      *
-     * @param string $boxNumber
+     * @param int $box_number
      *
      * @return $this
      */
-    public function setBoxNumber($boxNumber)
+    public function setBoxNumber($box_number)
     {
-        $this->box_number = $boxNumber;
+        $this->box_number = $box_number;
 
         return $this;
     }
@@ -899,7 +897,7 @@ class MyParcelConsignment extends MyParcelClassConstants
      *
      * Composite type containing integer and currency. The amount is without decimal
      * separators.
-     * Pattern: [0, 50, 250, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000]
+     * Pattern: [500]
      * Required: No
      *
      * @param int $insurance
@@ -908,8 +906,8 @@ class MyParcelConsignment extends MyParcelClassConstants
      */
     public function setInsurance($insurance)
     {
-        if (!in_array($insurance, self::INSURANCE_POSSIBILITIES) && $this->getCountry() == 'NL') {
-            throw new \Exception('Insurance must be one of [0, 50, 250, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000]');
+        if (!in_array($insurance, self::INSURANCE_POSSIBILITIES) && $this->getCountry() == 'BE') {
+            throw new \Exception('Insurance must be one of [500]');
         }
 
         if (!$this->canHaveOption()) {

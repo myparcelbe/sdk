@@ -23,7 +23,7 @@ use MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
  * Class SendMailboxConsignmentTest
  * @package MyParcelBE\Sdk\tests\SendMailboxConsignmentTest
  */
-class SendMailboxConsignmentTest extends \PHPUnit_Framework_TestCase
+class SendMailboxConsignmentTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -132,7 +132,7 @@ class SendMailboxConsignmentTest extends \PHPUnit_Framework_TestCase
         return [
             [
                 'api_key' => getenv('API_KEY'),
-                'cc' => 'NL',
+                'cc' => 'BE',
                 'person' => 'The insurance man',
                 'company' => 'Mega Store',
                 'full_street_test' => 'Koestraat 55',

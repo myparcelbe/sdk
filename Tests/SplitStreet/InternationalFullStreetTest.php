@@ -24,9 +24,8 @@ use MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository;
  *
  * @package MyParcelBE\Sdk\tests\InternationalFullStreetTest
  */
-class InternationalFullStreetTest extends \PHPUnit_Framework_TestCase
+class InternationalFullStreetTest extends \PHPUnit\Framework\TestCase
 {
-
     /**
      * @covers \MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepository::getFullStreet
      * @dataProvider additionProvider()
