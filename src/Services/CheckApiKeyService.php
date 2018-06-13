@@ -30,6 +30,7 @@ class CheckApiKeyService
 
     /**
      * @param mixed $api_key
+     * @return CheckApiKeyService
      */
     public function setApiKey($api_key)
     {
@@ -38,6 +39,9 @@ class CheckApiKeyService
         return $this;
     }
 
+    /**
+     * @return bool
+     */
     public function apiKeyIsCorrect()
     {
         try {
