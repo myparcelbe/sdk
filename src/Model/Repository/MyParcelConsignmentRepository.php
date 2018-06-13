@@ -283,7 +283,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
     public function encodeReturnShipment() {
         $data = [
             'parent' => $this->getMyParcelConsignmentId(),
-            'carrier' => 1,
+            'carrier' => 2,
             'email' => $this->getEmail(),
             'name' => $this->getPerson(),
         ];
@@ -395,7 +395,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
                 'package_type' => $packageType,
                 'label_description' => $this->getLabelDescription(),
             ],
-            'carrier' => 1,
+            'carrier' => 2,
         ];
 
         if ($this->getReferenceId()) {
