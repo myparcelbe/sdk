@@ -53,9 +53,9 @@ class SendUserAgentTest extends \PHPUnit\Framework\TestCase
                 $consignment->setPickupAddressFromCheckout($consignmentTest['checkout_data']);
             }
 
-            if (key_exists('delivery_date', $consignmentTest)) {
-                $consignment->setDeliveryDate($consignmentTest['delivery_date']);
-            }
+//            if (key_exists('delivery_date', $consignmentTest)) {
+//                $consignment->setDeliveryDate($consignmentTest['delivery_date']);
+//            }
 
             if (key_exists('delivery_type', $consignmentTest)) {
                 $consignment->setDeliveryType($consignmentTest['delivery_type']);
@@ -103,6 +103,10 @@ class SendUserAgentTest extends \PHPUnit\Framework\TestCase
 
             if (key_exists('pickup_number', $consignmentTest)) {
                 $consignment->setPickupNumber($consignmentTest['pickup_number']);
+            }
+
+            if (key_exists('pickup_location_code', $consignmentTest)) {
+                $consignment->setPickupLocationCode($consignmentTest['pickup_location_code']);
             }
 
             if (key_exists('pickup_location_name', $consignmentTest)) {
@@ -164,9 +168,9 @@ class SendUserAgentTest extends \PHPUnit\Framework\TestCase
                 $this->assertEquals($consignmentTest['delivery_type'], $consignment->getDeliveryType(), 'getDeliveryType()');
             }
 
-            if (!empty($consignmentTest['delivery_date'])) {
-                $this->assertEquals($consignmentTest['delivery_date'], $consignment->getDeliveryDate(), 'getDeliveryDate()');
-            }
+//            if (!empty($consignmentTest['delivery_date'])) {
+//                $this->assertEquals($consignmentTest['delivery_date'], $consignment->getDeliveryDate(), 'getDeliveryDate()');
+//            }
 
             if (!empty($consignmentTest['pickup_postal_code'])) {
                 $this->assertEquals($consignmentTest['pickup_postal_code'], $consignment->getPickupPostalCode(), 'getPickupPostalCode()');
@@ -182,6 +186,10 @@ class SendUserAgentTest extends \PHPUnit\Framework\TestCase
 
             if (!empty($consignmentTest['pickup_number'])) {
                 $this->assertEquals($consignmentTest['pickup_number'], $consignment->getPickupNumber(), 'getPickupNumber()');
+            }
+
+            if (!empty($consignmentTest['pickup_location_code'])) {
+                $this->assertEquals($consignmentTest['pickup_location_code'], $consignment->getPickupLocationCode(), 'getPickupLocationCode()');
             }
 
             if (!empty($consignmentTest['pickup_location_name'])) {
