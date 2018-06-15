@@ -36,7 +36,7 @@ class MyParcelConsignment extends MyParcelClassConstants
     /**
      * @var string
      */
-    private $reference_id;
+    private $reference_id = null;
 
     /**
      * @var int
@@ -126,7 +126,7 @@ class MyParcelConsignment extends MyParcelClassConstants
     /**
      * @var string
      */
-    private $delivery_date = null;
+//    private $delivery_date = null;
 
     /**
      * @var string
@@ -201,6 +201,11 @@ class MyParcelConsignment extends MyParcelClassConstants
     /**
      * @var string
      */
+    private $pickup_location_code = null;
+
+    /**
+     * @var string
+     */
     private $pickup_location_name = null;
 
     /**
@@ -218,7 +223,9 @@ class MyParcelConsignment extends MyParcelClassConstants
      */
     public function setReferenceId($reference_id)
     {
-        $this->reference_id = (string) $reference_id;
+    	if ($reference_id !== null) {
+		    $this->reference_id = (string) $reference_id;
+	    }
 
         return $this;
     }
@@ -674,20 +681,22 @@ class MyParcelConsignment extends MyParcelClassConstants
         return $this->delivery_type;
     }
 
-    /**
-     * The delivery type for the package
-     *
-     * Required: Yes if delivery_date has been specified
-     *
-     * @param int $delivery_type
-     * @return $this
-     * @throws \Exception
-     */
-    public function setDeliveryType($delivery_type)
+	/**
+	 * The delivery type for the package
+	 *
+	 * Required: Yes if delivery_date has been specified
+	 *
+	 * @param int $delivery_type
+	 * @param bool $needDeliveryDate
+	 *
+	 * @return $this
+	 * @throws \Exception
+	 */
+    public function setDeliveryType($delivery_type, $needDeliveryDate = true)
     {
-        if ($delivery_type !== 2 && $this->getDeliveryDate() == null) {
-            throw new \Exception('If delivery type !== 2, first set delivery date with setDeliveryDate() before running setDeliveryType()');
-        }
+//        if ($needDeliveryDate && $delivery_type !== 2 && $this->getDeliveryDate() == null) {
+//            throw new \Exception('If delivery type !== 2, first set delivery date with setDeliveryDate() before running setDeliveryType() for shipment: ' . $this->myparcel_consignment_id);
+//        }
 
         $this->delivery_type = $delivery_type;
 
@@ -695,12 +704,14 @@ class MyParcelConsignment extends MyParcelClassConstants
     }
 
     /**
+     * @deprecated Can't use DeliveryDate for SendMyParcel.be
+     *
      * @return string
      */
-    public function getDeliveryDate()
-    {
-        return $this->delivery_date;
-    }
+//    public function getDeliveryDate()
+//    {
+//        return $this->delivery_date;
+//    }
 
     /**
      * The delivery date time for this shipment
@@ -708,35 +719,37 @@ class MyParcelConsignment extends MyParcelClassConstants
      * Example: 2017-01-01 | 2017-01-01 00:00:00
      * Required: Yes if delivery type has been specified
      *
+     * @deprecated Can't use DeliveryDate for SendMyParcel.be
+     *
      * @param string $delivery_date
      * @return $this
      * @throws \Exception
      */
-    public function setDeliveryDate($delivery_date)
-    {
-
-        $result = preg_match(self::DATE_REGEX, $delivery_date, $matches);
-
-        if ($result) {
-            $delivery_date = (string) $delivery_date . ' 00:00:00';
-        } else {
-            $result = preg_match(self::DATE_TIME_REGEX, $delivery_date, $matches);
-
-            if (!$result) {
-                throw new \Exception('Make sure the date (' . $delivery_date . ') is correct, like pattern: YYYY-MM-DD HH:MM:SS' . json_encode($matches));
-            }
-        }
-
-        if (new \DateTime() > new \DateTime($delivery_date)) {
-            $datetime = new \DateTime();
-            $datetime->modify('+1 day');
-            $delivery_date = $datetime->format('Y\-m\-d\ h:i:s');
-        }
-
-        $this->delivery_date = (string) $delivery_date;
-
-        return $this;
-    }
+//    public function setDeliveryDate($delivery_date)
+//    {
+//
+//        $result = preg_match(self::DATE_REGEX, $delivery_date, $matches);
+//
+//        if ($result) {
+//            $delivery_date = (string) $delivery_date . ' 00:00:00';
+//        } else {
+//            $result = preg_match(self::DATE_TIME_REGEX, $delivery_date, $matches);
+//
+//            if (!$result) {
+//                throw new \Exception('Make sure the date (' . $delivery_date . ') is correct, like pattern: YYYY-MM-DD HH:MM:SS' . json_encode($matches));
+//            }
+//        }
+//
+//        if (new \DateTime() > new \DateTime($delivery_date)) {
+//            $datetime = new \DateTime();
+//            $datetime->modify('+1 day');
+//            $delivery_date = $datetime->format('Y\-m\-d\ h:i:s');
+//        }
+//
+//        $this->delivery_date = (string) $delivery_date;
+//
+//        return $this;
+//    }
 
     /**
      * @return string
@@ -1097,6 +1110,30 @@ class MyParcelConsignment extends MyParcelClassConstants
     public function setPickupNumber($pickup_number)
     {
         $this->pickup_number = (string) $pickup_number;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPickupLocationCode()
+    {
+        return $this->pickup_location_code;
+    }
+
+    /**
+     * Pattern:  [0-9]
+     * Example:  618925
+     * Required: Yes for pickup location
+     *
+     * @param string $pickup_location_code
+     *
+     * @return MyParcelConsignment
+     */
+    public function setPickupLocationCode($pickup_location_code)
+    {
+        $this->pickup_location_code = (string) $pickup_location_code;
 
         return $this;
     }

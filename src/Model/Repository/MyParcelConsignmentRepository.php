@@ -207,6 +207,8 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
      *
      * You can use this if you use the following code in your checkout: https://github.com/myparcelbe/checkout
      *
+     * @deprecated Can't use DeliveryDate for SendMyParcel.be
+     *
      * @param string $checkoutData
      * @return $this
      * @throws \Exception
@@ -222,9 +224,9 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
             return $this;
         }
 
-        if ($this->getDeliveryDate() == null) {
-            $this->setDeliveryDate($aCheckoutData['date']);
-        }
+//        if ($this->getDeliveryDate() == null) {
+//            $this->setDeliveryDate($aCheckoutData['date']);
+//        }
 
         return $this;
     }
@@ -253,9 +255,9 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
             return $this;
         }
 
-        if ($this->getDeliveryDate() == null) {
-            $this->setDeliveryDate($aCheckoutData['date']);
-        }
+//        if ($this->getDeliveryDate() == null) {
+//            $this->setDeliveryDate($aCheckoutData['date']);
+//        }
 
         if ($aCheckoutData['price_comment'] == 'retail') {
             $this->setDeliveryType(4);
@@ -270,6 +272,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
             ->setPickupStreet($aCheckoutData['street'])
             ->setPickupCity($aCheckoutData['city'])
             ->setPickupNumber($aCheckoutData['number'])
+            ->setPickupLocationCode($aCheckoutData['location_code'])
             ->setPickupLocationName($aCheckoutData['location']);
 
         return $this;
@@ -392,7 +395,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
                 'phone' => (string) $this->getPhone(),
             ],
             'options' => [
-                'package_type' => $packageType,
+                'package_type' => $this->getPackageType() ?: self::TYPE_STANDARD,
                 'label_description' => $this->getLabelDescription(),
             ],
             'carrier' => 2,
@@ -456,9 +459,9 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
                 ->encodeInsurance();
         }
 
-        if ($this->getDeliveryDate()) {
-            $this->consignmentEncoded['options']['delivery_date'] = $this->getDeliveryDate();
-        }
+//        if ($this->getDeliveryDate()) {
+//            $this->consignmentEncoded['options']['delivery_date'] = $this->getDeliveryDate();
+//        }
 
         return $this;
     }
@@ -471,6 +474,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
             $this->getPickupStreet() !== null &&
             $this->getPickupCity() !== null &&
             $this->getPickupNumber() !== null &&
+            $this->getPickupLocationCode() !== null &&
             $this->getPickupLocationName() !== null
         ) {
             $this->consignmentEncoded['pickup'] = [
@@ -478,6 +482,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
                 'street' => $this->getPickupStreet(),
                 'city' => $this->getPickupCity(),
                 'number' => $this->getPickupNumber(),
+                'location_code' => $this->getPickupLocationCode(),
                 'location_name' => $this->getPickupLocationName(),
             ];
         }
@@ -503,6 +508,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
 
     /**
      * @return $this
+     * @throws \Exception
      */
     private function encodeCdCountry()
     {
@@ -591,7 +597,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
             ->setEmail($recipient['email'])
             ->setPhone($recipient['phone'])
             ->setPackageType($options['package_type'])
-            ->setLabelDescription($options['label_description'])
+            ->setLabelDescription(isset($options['label_description']) ? $options['label_description'] : '')
         ;
 
         return $this;
@@ -636,14 +642,14 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
             $this->setInsurance($insuranceAmount / 100);
         }
 
-        if (isset($options['delivery_date'])) {
-            $this->setDeliveryDate($options['delivery_date']);
-        }
+//        if (isset($options['delivery_date'])) {
+//            $this->setDeliveryDate($options['delivery_date']);
+//        }
 
         if (isset($options['delivery_type'])) {
-            $this->setDeliveryType($options['delivery_type']);
+            $this->setDeliveryType($options['delivery_type'], false);
         } else {
-            $this->setDeliveryType(self::DEFAULT_DELIVERY_TYPE);
+            $this->setDeliveryType(self::DEFAULT_DELIVERY_TYPE, false);
         }
 
         return $this;
@@ -674,6 +680,10 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
                 $this->setPickupNumber($pickup['number']);
             }
 
+            if (key_exists('location_code', $pickup)) {
+                $this->setPickupLocationCode($pickup['location_code']);
+            }
+
             if (key_exists('location_name', $pickup)) {
                 $this->setPickupLocationName($pickup['location_name']);
             }
@@ -683,6 +693,7 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
                 ->setPickupStreet(null)
                 ->setPickupCity(null)
                 ->setPickupNumber(null)
+                ->setPickupLocationCode(null)
                 ->setPickupLocationName(null);
         }
 

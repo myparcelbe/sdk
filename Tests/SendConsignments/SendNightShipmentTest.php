@@ -50,9 +50,9 @@ class SendNightShipmentTest extends \PHPUnit\Framework\TestCase
                 ->setEmail('reindert@myparcel.nl')
                 ->setPhone($consignmentTest['phone']);
 
-            if (key_exists('delivery_date', $consignmentTest)) {
-                $consignment->setDeliveryDate($consignmentTest['delivery_date']);
-            }
+//            if (key_exists('delivery_date', $consignmentTest)) {
+//                $consignment->setDeliveryDate($consignmentTest['delivery_date']);
+//            }
 
             if (key_exists('package_type', $consignmentTest)) {
                 $consignment->setPackageType($consignmentTest['package_type']);
@@ -109,9 +109,9 @@ class SendNightShipmentTest extends \PHPUnit\Framework\TestCase
             $this->assertEquals($consignmentTest['city'], $consignment->getCity(), 'getCity()');
             $this->assertEquals($consignmentTest['phone'], $consignment->getPhone(), 'getPhone()');
 
-            if (key_exists('delivery_date', $consignmentTest)) {
-                $this->assertEquals($consignmentTest['delivery_date'] . ' 00:00:00', $consignment->getDeliveryDate(), 'getDeliveryDate()');
-            }
+//            if (key_exists('delivery_date', $consignmentTest)) {
+//                $this->assertEquals($consignmentTest['delivery_date'] . ' 00:00:00', $consignment->getDeliveryDate(), 'getDeliveryDate()');
+//            }
 
             if (key_exists('package_type', $consignmentTest)) {
                 $this->assertEquals($consignmentTest['package_type'], $consignment->getPackageType(), 'getPackageType()');
@@ -189,7 +189,7 @@ class SendNightShipmentTest extends \PHPUnit\Framework\TestCase
                 'package_type' => 1,
                 'delivery_type' => 3,
                 'label_description' => 'Label description',
-                'delivery_date' => '2019-07-28'
+//                'delivery_date' => '2019-07-28'
             ],
             [
                 'api_key' => getenv('API_KEY'),
@@ -208,7 +208,7 @@ class SendNightShipmentTest extends \PHPUnit\Framework\TestCase
                 'package_type' => 1,
                 'delivery_type' => 3,
                 'label_description' => 'Label description',
-                'delivery_date' => '2019-07-28'
+//                'delivery_date' => '2019-07-28'
             ]
         ];
     }
