@@ -59,7 +59,8 @@ $consignment = (new \MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepo
 $myParcelCollection
     ->addConsignment($consignment)
     ->setPdfOfLabels()
-    ->downloadPdfOfLabels();
+    ->downloadPdfOfLabels()
+    ->setUserAgent('name_of_cms', '1.0');
 ```
 
 ## Available Methods
@@ -88,7 +89,15 @@ $consignment = (new \MyParcelBE\Sdk\src\Model\Repository\MyParcelConsignmentRepo
 $myParcelCollection
     ->addConsignment($consignment)
 ```
-
+### User-agent
+To give us insight into which CMS system you make a connection from, you should send a User-Agent. If you're using a known CMS system it's required. You must send the name of the CMS system followed by a version number. A version is not required.
+```
+    ->setUserAgent('name_of_cms', '1.0')
+```
+### Submitting full address
+```
+    ->setFullStreet('Plein 1945 55b')
+```
 ### Submitting address in pieces
 ```php
     ->setStreet('Plein 1945')
@@ -140,6 +149,7 @@ foreach ($yourShipments as $yourShipment) {
         /** @todo; set all info */
         
     $myParcelCollection
+        ->setUserAgent('name_of_cms', '1.0')
         ->addConsignment($consignment)
 }
 ```
