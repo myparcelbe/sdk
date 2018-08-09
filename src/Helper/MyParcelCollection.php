@@ -469,12 +469,6 @@ class MyParcelCollection
             throw new \Exception('Can\'t send retour label to customer. Please create an issue on GitHub or contact MyParcel; support@myparcel.nl. Note this request body: ' . $data);
         }
 
-        $this->clearConsignmentsCollection();
-
-        foreach ($consignmentsToReplace as $consignmentToReplace) {
-            $this->addConsignment($consignmentToReplace, false);
-        }
-
         return $this;
     }
 
