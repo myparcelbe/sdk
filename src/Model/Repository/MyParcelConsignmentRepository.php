@@ -5,7 +5,7 @@
  * If you want to add improvements, please create a fork in our GitHub:
  * https://github.com/myparcelbe
  *
- * @author      Reindert Vetter <reindert@myparcel.nl>
+ * @author      Reindert Vetter <info@sendmyparcel.be>
  * @copyright   2010-2017 MyParcel
  * @license     http://creativecommons.org/licenses/by-nc-nd/3.0/nl/deed.en_US  CC BY-NC-ND 3.0 NL
  * @link        https://github.com/myparcelbe/sdk
@@ -366,11 +366,50 @@ class MyParcelConsignmentRepository extends MyParcelConsignment
      *
      * @return bool
      */
-    protected function isCdCountry()
+    public function isCdCountry()
     {
-        return !in_array(
+        return false === $this->isEuCountry();
+    }
+
+    /**
+     * Check if the address is inside the EU
+     *
+     * @todo move to hasCountry
+     *
+     * @return bool
+     */
+    public function isEuCountry() {
+        return in_array(
             $this->getCountry(),
-            self::EU_COUNTRIES
+            array(
+                'NL',
+                'BE',
+                'AT',
+                'BG',
+                'CZ',
+                'CY',
+                'DK',
+                'EE',
+                'FI',
+                'FR',
+                'DE',
+                'GB',
+                'GR',
+                'HU',
+                'IE',
+                'IT',
+                'LV',
+                'LT',
+                'LU',
+                'PL',
+                'PT',
+                'RO',
+                'SK',
+                'SI',
+                'ES',
+                'SE',
+                'XK',
+            )
         );
     }
 
