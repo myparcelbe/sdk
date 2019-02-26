@@ -6,7 +6,7 @@
  * If you want to add improvements, please create a fork in our GitHub:
  * https://github.com/myparcelbe
  *
- * @author      Reindert Vetter <reindert@myparcel.nl>
+ * @author      Reindert Vetter <info@sendmyparcel.be>
  * @copyright   2010-2017 MyParcel
  * @license     http://creativecommons.org/licenses/by-nc-nd/3.0/nl/deed.en_US  CC BY-NC-ND 3.0 NL
  * @link        https://github.com/myparcelbe/sdk
@@ -52,7 +52,7 @@ class SendMultipleConsignmentsTest extends \PHPUnit\Framework\TestCase
                 ->setPostalCode($consignmentTest['postal_code'])
                 ->setPackageType(1)
                 ->setCity($consignmentTest['city'])
-                ->setEmail('reindert@myparcel.nl')
+                ->setEmail('info@sendmyparcel.be')
             ;
             $myParcelCollection->addConsignment($consignment);
         }
